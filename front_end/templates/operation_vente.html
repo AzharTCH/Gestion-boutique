@@ -1,0 +1,58 @@
+{% extends 'parent.html' %}
+
+{% block titre %}
+<title>Opérations de vente</title>
+{% endblock %}
+
+{% block contenu %}
+
+
+
+<style>
+    .card {
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: 0.3s;
+
+    }
+
+    .card:hover {
+        box-shadow: 0 8px 16px #9A031E;
+    }
+
+    .card-title {
+        color: #333;
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .card h6 {
+        margin-bottom: 8px;
+    }
+</style>
+
+
+<h1>Liste des des ventes</h1>
+<div class="row">
+    {% for produit_total in produits_totals %}
+    <div class="col-md-4">
+        <div class="card mb-3">
+            <div class="card-body">
+                <h4 class="card-title">Libelle : {{ produit_total.produit_vendu.produit.libelle }}</h4>
+                <h6>Categorie : {{ produit_total.produit_vendu.produit.catId.nomCat }}</h6>
+                <h6>Date : {{ produit_total.produit_vendu.vente.date|date:"Y-m-d H:i:s" }}</h6>
+                <h6>Quantité vendue : {{ produit_total.produit_vendu.quantite }}</h6>
+                <h6>Prix unitaire : {{ produit_total.produit_vendu.prix_unitaire }}</h6>
+                <h6>Prix total : {{ produit_total.total }}</h6>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

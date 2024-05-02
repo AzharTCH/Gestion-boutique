@@ -1,0 +1,32 @@
+{% extends 'parent.html' %}
+
+{% block titre %}
+<title>Tableau de bord</title>
+{% endblock %}
+
+{% block contenu %}
+
+<style>
+    .btn{
+        width: 400px;
+        height: 100px;
+        font-size: 30px;
+        margin-right: 4em;
+        background-color: #3B3486;
+    }
+</style>
+
+<div class="container mt-3">
+    <div class="d-flex">
+        <form action="{% url 'front_end:transactions' %}" method="POST">
+            {% csrf_token %}
+            <button class="btn btn-primary mr-2">TRANSACTIONS</button>
+        </form>
+        <form action="{% url 'front_end:operation_vente' %}" method="POST">
+            {% csrf_token %}
+            <button class="btn btn-danger">OPERATIONS DE VENTE</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

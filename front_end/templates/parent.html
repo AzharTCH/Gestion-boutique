@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block titre %}
+    <title>Parent</title>
+    {% endblock %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<style>
+    .search {
+        background: rgba(0, 0, 0, 0.15);
+        outline: none;
+        margin-top: 20px;
+        margin-bottom: 30px;
+        width: 300px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        padding: 5px 15px;
+        border-radius: 5px;
+        color: white;
+        transition: 0.3s ease-in-out;
+    }
+
+    .search:hover {
+        transform: scale(1.1);
+        margin-right: 15px;
+        margin-left: 20px;
+    }
+
+    #recherche {
+        background-color: #3B3486;
+        color: #ffffff;
+        border: none;
+        border-radius: 10px;
+        height: 40px;
+        width: 100px;
+        transition: 0.3s ease-in-out;
+    }
+
+    #recherche:hover {
+        background-color: #3468C0;
+    }
+
+    img {
+        justify-content: center;
+    }
+
+    .row {
+        margin-right: 0;
+    }
+
+    .d-flex {
+        justify-content: center;
+    }
+
+    #navbarNav {
+        background-color: #092635;
+        color: beige;
+    }
+
+    #navbarNav a {
+        color: #ffffff;
+        font-weight: bold;
+        font-size: large;
+    }
+
+
+    #navbarNav a:hover {
+        color: #ffcc00;
+    }
+</style>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'front_end:accueil' %}">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'front_end:vente' %}">Vente</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'front_end:categorie' %}">Categorie</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'front_end:dashBord' %}">Tabeau de bord</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'front_end:nouveauProduit' %}">Nouveau Produit</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'front_end:flooz' %}">Flooz</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'front_end:tmoney' %}">Tmoney</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'front_end:creerCategorie' %}">Créer une catégorie</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    {% block contenu %}
+
+    {% endblock %}
+
+</body>
+
+</html>

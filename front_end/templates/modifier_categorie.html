@@ -1,0 +1,24 @@
+{% extends 'parent.html' %}
+
+{% block titre %}
+<title>Modifier Catégorie</title>
+{% endblock %}
+
+{% block contenu %}
+<h1>MODIFER UNE CATEGORIE</h1>
+<form action="{% url 'front_end:modifier_categorie' categorie.id %}" method="POST" class="content m-5">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Nom de la catégorie</label>
+        <input type="text" name="nomCat" class="form-control" id="exampleFormControlInput1" value="{{ categorie.nomCat }}">
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleexampleFormControlTexarea1" class="form-label">Description du produit</label>
+        <textarea cols="30" rows="10" class="form-control" id="exampleexampleFormControlTexarea1"
+          name="description">{{ categorie.nomCat }}</textarea>
+      </div>
+
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+</form>
+{% endblock %}

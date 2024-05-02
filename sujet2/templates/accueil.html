@@ -1,0 +1,21 @@
+
+{% extends 'parent.html' %}
+
+{% block titre %}
+    <title>Livres</title>
+{% endblock %}
+
+{% block contenu %}
+{% for livre in livres %}
+        <div class="card mb-3">
+                <div class="card-body">
+                        <h4 class="card-title">Titre : {{ livre.titre }}</h4>
+                        <h6>Auteur : {{livre.auteur}}</h6>
+                        <h6>Description : {{livre.description}}</h6>
+                        <h6>Prix : {{livre.prix}}</h6>
+                    
+                </div>
+        </div>
+        {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends 'parent.html' %}
+
+{% block titre %}
+<title>Vente</title>
+{% endblock %}
+
+{% block contenu %}
+
+<style>
+        #quantite_disponible {
+                background-color: #AFC8AD;
+        }
+
+        .card {
+                border: 1px solid #ddd;
+                border-radius: 10px;
+                background-color: #9EC8B9;
+                margin-bottom: 20px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                transition: 0.3s;
+
+        }
+
+        .card:hover {
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-title {
+                color: #333;
+                font-size: 1.5rem;
+                margin-bottom: 10px;
+        }
+
+        .card-body {
+                padding: 20px;
+        }
+
+        .card h6 {
+                margin-bottom: 8px;
+        }
+
+        .card button {
+
+                background-color: #007bff;
+                color: #fff;
+                border: none;
+                padding: 8px 16px;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+        }
+
+        .card button:hover {
+                background-color: #0056b3;
+        }
+
+        .card-buttons {
+                display: flex;
+                justify-content: space-between;
+        }
+</style>
+
+<form action="{% url 'front_end:recherche_article_vente' %}" method="get">
+        <input class="search" type="text" name="q" placeholder="Rechercher un article">
+        <button id="recherche" type="submit" value="Rechercher">Rechercher</button>
+</form>
+{% for produit in produits %}
+
+
+<div class="card mb-3">
+        <div class="card-body">
+                <h4 class="card-title">libelle : {{ produit.libelle }}</h4>
+                <h6>Categorie : {{produit.catId.nomCat}}</h6>
+                <form method="post" action="{% url 'front_end:valide_vente' produit.id %}">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                                <label for="quantite_disponible" class="form-label">Quantité</label>
+                                <input type="number" name="quantite_disponible" class="form-control"
+                                        id="quantite_disponible" value="1" min="1">
+                        </div>
+                        <h6>Quantité disponible : {{produit.quantite_disponible}}</h6>
+                        <h6>Description : {{produit.description}}</h6>
+                        <h6>Prix : {{produit.prix}}</h6>
+                        <button id="valide" type="submit">Valider la vente</button>
+                </form>
+        </div>
+</div>
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'parent.html' %}
+
+
+
+{% block titre %}
+<title>Envoie</title>
+{% endblock %}
+
+{% block contenu %}
+
+
+<h1>ENVOIE</h1>
+<form action="{% url 'front_end:transaction' %}" method="POST" class="content m-5">
+  {% csrf_token %}
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Numéro du destinataire</label>
+    <input type="text" name="numero" class="form-control" id="exampleFormControlInput1" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Montant</label>
+    <input type="text" name="montant" class="form-control" id="exampleFormControlInput1" required>
+  </div>
+
+  <input type="hidden" name="service" value="Flooz">
+  <input type="hidden" name="type_transaction" value="Envoie">
+
+  <button type="submit" class="btn btn-primary">Envoyer</button>
+</form>
+{% endblock %}

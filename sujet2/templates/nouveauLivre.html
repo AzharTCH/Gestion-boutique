@@ -1,0 +1,32 @@
+
+
+{% extends 'parent.html' %}
+
+{% block titre %}
+        <title>nouveau Livre</title>
+{% endblock %}
+
+{% block contenu %}
+    <form action="{% url 'front_end:nouveauLivre' %}" method="POST" class="content m-5">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Titre du livre</label>
+          <input type="text" name="titre" class="form-control" id="exampleFormControlInput1" aria-describedby="emailHelp">
+          <div id="emailHelp" class="form-text">veuillez entrez un titre</div>
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Nom de l'auteur</label>
+            <input type="text" name="auteur" class="form-control" id="exampleFormControlInput1" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="exampleexampleFormControlTexarea1" class="form-label">Description du livre</label>
+            <textarea cols="30" rows="10" class="form-control" id="exampleexampleFormControlTexarea1" name="description"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Prix du livre</label>
+            <input type="number" name="prix" class="form-control" id="exampleFormControlInput1" aria-describedby="emailHelp">
+          </div>
+        
+        <button type="submit" class="btn btn-primary">Envoyer</button>
+      </form>
+{% endblock %}

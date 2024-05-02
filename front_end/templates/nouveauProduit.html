@@ -1,0 +1,45 @@
+{% extends 'parent.html' %}
+
+{% block titre %}
+<title>Nouveau produit</title>
+{% endblock %}
+
+{% block contenu %}
+<h1>AJOUTER UN PRODUIT</h1>
+<form action="{% url 'front_end:nouveauProduit' %}" method="POST" class="content m-5">
+  {% csrf_token %}
+  <div class="mb-3">
+    <label for="libelle" class="form-label">Libelle</label>
+    <input type="text" name="libelle" class="form-control" id="libelle" aria-describedby="libelleHelp">
+    <div id="libelleHelp" class="form-text">Veuillez entrer un titre.</div>
+  </div>
+
+  <div class="mb-3">
+    <label for="description" class="form-label">Description du produit</label>
+    <textarea cols="30" rows="10" class="form-control" id="description" name="description"></textarea>
+  </div>
+
+  <div class="mb-3">
+    <label for="prix" class="form-label">Prix du produit</label>
+    <input type="number" name="prix" class="form-control" id="prix" aria-describedby="prixHelp">
+  </div>
+
+  <div class="mb-3">
+    <label for="quantite_disponible" class="form-label">Quantité disponible</label>
+    <input type="number" name="quantite_disponible" class="form-control" id="quantite_disponible" aria-describedby="quantite_disponibleHelp">
+  </div>
+
+  <!-- Ajout du champ de sélection de catégorie -->
+  <div class="mb-3">
+    <label for="categorie" class="form-label">Catégorie</label>
+    <select name="catId" class="form-select" id="categorie" aria-describedby="categorieHelp">
+      {% for categorie in categories %}
+        <option value="{{ categorie.id }}">{{ categorie.nomCat }}</option>
+      {% endfor %}
+    </select>
+    <div id="categorieHelp" class="form-text">Veuillez sélectionner une catégorie.</div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Envoyer</button>
+</form>
+{% endblock %}

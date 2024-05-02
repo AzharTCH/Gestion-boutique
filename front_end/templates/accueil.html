@@ -1,0 +1,95 @@
+{% extends 'parent.html' %}
+
+{% block titre %}
+<title>Produits</title>
+{% endblock %}
+
+{% block contenu %}
+
+<style>
+        .card {
+                border: 1px solid #ddd;
+                border-radius: 10px;
+                margin-bottom: 20px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                transition: 0.3s;
+
+        }
+
+        .card:hover {
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-title {
+                color: #333;
+                font-size: 1.5rem;
+                margin-bottom: 10px;
+        }
+
+        .card-body {
+                padding: 20px;
+        }
+
+        .card h6 {
+                margin-bottom: 8px;
+        }
+
+        .card button {
+
+                background-color: #007bff;
+                color: #fff;
+                border: none;
+                padding: 8px 16px;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+        }
+
+        .card button:hover {
+                background-color: #0056b3;
+        }
+
+        .card-buttons {
+                display: flex;
+                justify-content: space-between;
+        }
+
+        .card button {
+                margin-top: 10px;
+        }
+</style>
+
+<form action="{% url 'front_end:rechercher_article' %}" method="get">
+        <input class="search" type="text" name="q" placeholder="Rechercher un article">
+        <button id="recherche" type="submit" value="Rechercher">Rechercher</button>
+</form>
+
+<div class="row">
+        {% for produit in produits %}
+        <div class="col-md-4">
+                <div class="card mb-3">
+                        <div class="card-body">
+                                <h4 class="card-title">libelle : {{ produit.libelle }}</h4>
+                                <h6>Categorie : {{produit.catId.nomCat}}</h6>
+                                <h6>Quantité disponible : {{produit.quantite_disponible}}</h6>
+                                <h6>Description : {{produit.description}}</h6>
+                                <h6>Prix : {{produit.prix}}</h6>
+                                <div class="card-buttons">
+                                        <form method="post"
+                                                action="{% url 'front_end:supprimer_produit' produit.id %}">
+                                                {% csrf_token %}
+                                                <button type="submit">Supprimer</button>
+                                        </form>
+                                        <form method="GET"
+                                                action="{% url 'front_end:mettre_a_jour_produit' produit.id %}">
+                                                {% csrf_token %}
+                                                <button type="submit">Mettre à jour</button>
+                                        </form>
+                                </div>
+
+                        </div>
+                </div>
+        </div>
+        {% endfor %}
+</div>
+{% endblock %}
